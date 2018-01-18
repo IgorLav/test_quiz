@@ -43,12 +43,13 @@ const reducer = (state = initialState, action) => {
             };
         case actionTypes.QUIZ_TIME_END:
             const endTime = Date.now();
+            const total = state.time.start ? endTime - state.time.start : 0;
             return {
                 ...state,
                 time: {
                     ...state.time,
                     end: endTime,
-                    total: (endTime - state.time.start) / 1000
+                    total: total / 1000
                 }
             };
         case actionTypes.ADD_USER_ANSWER:
