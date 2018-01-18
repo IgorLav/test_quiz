@@ -10,7 +10,7 @@ const App = (props) => (
             <Route path="/" render={() => (
                 <React.Fragment>
                     <h1>Click button beneath to start quiz</h1>
-                    <Link>Start Quiz</Link>
+                    <Link to={'/quiz'}>Start Quiz</Link>
                 </React.Fragment>
             )} exact/>
 
