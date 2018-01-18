@@ -16,7 +16,7 @@ class Result extends React.Component {
             <div>
                 <h1>Squiz info:</h1>
                 <p>Result: <strong>{result}</strong></p>
-                <p>Your time: {console.log(time)}</p>
+                <p>Your time: {time} s</p>
                 <Link to="/quiz">{ result ? 'Play again': 'Start quiz now'}</Link>
             </div>
         );
@@ -30,7 +30,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
     result: state.questions.result,
-    time: state.questions.time
+    time: state.questions.time.total
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Result);

@@ -48,7 +48,7 @@ const reducer = (state = initialState, action) => {
                 time: {
                     ...state.time,
                     end: endTime,
-                    total: endTime - state.time.start / 1000
+                    total: (endTime - state.time.start) / 1000
                 }
             };
         case actionTypes.ADD_USER_ANSWER:
