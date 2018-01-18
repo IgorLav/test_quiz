@@ -1,60 +1,54 @@
 import React from 'react';
-import axios from 'axios';
 import QuizList from "../components/QuizList";
-import {genId} from "../utils";
+import {withRouter} from "react-router-dom";
+import * as actions from "../store/actions";
+import {connect} from "react-redux";
 
-export default class Quiz extends React.Component {
-    state = {
-        questions: null,
-        loading: false,
-        answers: []
-    };
-
+class Quiz extends React.Component {
     componentDidMount() {
-        this.setState({
-            loading: true
-        });
-
-        axios.get(`https://opentdb.com/api.php?amount=${10}`)
-            .then(res => {
-                const data = res.data;
-                if (data.results) {
-                    const mapData = data.results.map(item => (
-                        {
-                            _id: genId(),
-                            ...item
-                        }));
-                    this.setState({
-                        questions: mapData,
-                        loading: false
-                    });
-                }
-
-            }).catch(err => console.log(err));
+        this.props.onFetchQuestions();
     }
 
-    answerHandler = (e, _id, question, answer, type) => {
+    answerHandler = (_id, answer) => {
+        this.setState({
+            answers: {
+                _id,
+                answer: answer
+            }
+        });
+    };
+
+    showResult = (e) => {
         e.preventDefault();
-
-        this.setState((prevState) => ({
-            questions: [
-                ...prevState.questions,
-                {
-                    _id,
-                    question,
-
-                }
-            ]
-        }));
+        this.props.history.push('/result')
     };
 
     render() {
-        const {loading, questions} = this.state;
-
+        const {loading, questions} = this.props;
         return (
             <div>
-                {!loading && questions ? <QuizList questions={this.state.questions}/> : 'loading...'}
+                {!loading && questions ? (
+                    <QuizList questions={questions}
+                              answerHandler={this.answerHandler}
+                              showResult={(this.showResult)}
+                              onHandleAnswer={this.props.onHandleAnswer}
+                              onQuizeStart={this.props.onQuizeStart}
+                    />
+                ) : 'loading...'}
             </div>
         );
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+    onFetchQuestions: () => dispatch(actions.fetchQuestions()),
+    onHandleAnswer: (_id, value) => dispatch(actions.handleAnswer(_id, value)),
+    onQuizeStart: () => dispatch(actions.startQuize())
+});
+
+const mapStateToProps = state => ({
+    questions: state.questions.questions,
+    loading: state.questions.loading,
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Quiz));

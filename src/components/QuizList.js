@@ -2,13 +2,18 @@ import React from 'react';
 import QuizItem from './QuizItem';
 
 const QuizList = (props) => {
-    const questions = props.questions.map(item => <QuizItem info={item} key={item._id}/>);
+    const questions = props.questions.map(item => <QuizItem info={item}
+                                                            onHandleAnswer={props.onHandleAnswer}
+                                                            key={item._id}
+                                                            answerHandler={props.answerHandler}
+    />);
+    props.onQuizeStart();
     return (
-        <form onSubmit={props.onSubmit} >
+        <form>
             <ol>
                 {questions}
             </ol>
-            <button type="submit">Show me the result!</button>
+            <button onClick={(e)=> props.showResult(e)}>Show me the result!</button>
         </form>
     );
 };

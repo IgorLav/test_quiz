@@ -1,41 +1,24 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {Route, withRouter, Switch, Link} from 'react-router-dom';
 import './App.css';
 import Quiz from "./containers/Quiz";
+import Result from "./containers/Result";
 
-class App extends Component {
-    componentDidMount() {
+const App = (props) => (
+    <div className="App">
+        <Switch>
+            <Route path="/" render={() => (
+                <React.Fragment>
+                    <h1>Click button beneath to start quiz</h1>
+                    <Link>Start Quiz</Link>
+                </React.Fragment>
+            )} exact/>
 
-    }
+            <Route path="/quiz" component={Quiz} exact/>
 
-    state = {
-        startQuiz: false,
-        endQuiz: false
-    };
+            <Route path="/result" render={() => <Result/>} exact/>
+        </Switch>
+    </div>
+);
 
-    startQuiz = (e) => {
-        this.setState({
-            startQuiz: true,
-            endQuiz: false
-        })
-    };
-
-    endQuiz = (e) => {
-        this.setState({
-            startQuiz: false,
-            endQuiz: true
-        })
-    };
-
-    render() {
-        const {startQuiz, endQuiz} = this.state;
-        return (
-            <div className="App">
-                {!endQuiz && !startQuiz && <button onClick={(e) => this.startQuiz(e)}>Start Quiz</button>}
-                {startQuiz && <Quiz/>}
-                {endQuiz && <button onClick={(e) => this.startQuiz(e)}>Play again</button>}
-            </div>
-        );
-    }
-}
-
-export default App;
+export default withRouter(App);

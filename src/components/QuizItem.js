@@ -1,11 +1,11 @@
 import React from 'react';
 import QuizItemOptions from "./QuizItemOptions";
 
-const QuizItem = ({info}) => {
+const QuizItem = ({info, onHandleAnswer}) => {
     return (
         <li>
             <p dangerouslySetInnerHTML={{__html: info.question}}/>
-            <QuizItemOptions {...info} />
+            <QuizItemOptions {...info} onHandleAnswer={onHandleAnswer} />
         </li>
     )
 };
