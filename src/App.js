@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, withRouter, Switch, Link} from 'react-router-dom';
+import {Route, withRouter, Switch} from 'react-router-dom';
 import './assets/style/styles.css';
 import Quiz from "./containers/Quiz";
 import Result from "./containers/Result";
