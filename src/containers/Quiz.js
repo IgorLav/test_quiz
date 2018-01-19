@@ -1,5 +1,5 @@
 import React from 'react';
-import QuizList from "../components/QuizList";
+import QuizList from "./QuizList";
 import {withRouter} from "react-router-dom";
 import * as actions from "../store/actions";
 import {connect} from "react-redux";
