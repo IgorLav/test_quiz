@@ -13,11 +13,13 @@ class Result extends React.Component {
         const result = this.props.result;
         const time = this.props.time;
         return (
-            <div>
-                <h1>Quiz info:</h1>
-                <p>Result: <strong>{result}</strong></p>
-                <p>Your time: {time} s</p>
-                <Link to="/quiz">{ result ? 'Play again': 'Start quiz now'}</Link>
+            <div className="container">
+                <div className="well page page-bg">
+                    <h1 className="page-title">Quiz info:</h1>
+                    <p>Result: <strong>{result}</strong></p>
+                    <p>Your time: {time} s</p>
+                    <Link to="/quiz" className="btn btn-primary">{ result ? 'Play again': 'Start quiz now'}</Link>
+                </div>
             </div>
         );
     }

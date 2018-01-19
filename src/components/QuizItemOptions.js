@@ -3,7 +3,7 @@ import React from 'react';
 const QuizItemOptions = (props) => {
     const options = props.options.map((item, i) => {
         return(
-            <li key={item}>
+            <li className="options-list-item" key={item}>
                 <label>
                     <input type="radio"
                            name={props.question}
@@ -16,7 +16,7 @@ const QuizItemOptions = (props) => {
     });
 
     return (
-        <ol className="options">
+        <ol className="options-list">
             {options}
         </ol>
     );

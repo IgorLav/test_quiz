@@ -1,22 +1,16 @@
 import React from 'react';
 import {Route, withRouter, Switch, Link} from 'react-router-dom';
-import './App.css';
+import './assets/style/styles.css';
 import Quiz from "./containers/Quiz";
 import Result from "./containers/Result";
+import Home from "./components/Home";
 
 const App = (props) => (
     <div className="App">
         <Switch>
-            <Route path="/" render={() => (
-                <React.Fragment>
-                    <h1>Click button beneath to start quiz</h1>
-                    <Link to={'/quiz'}>Start Quiz</Link>
-                </React.Fragment>
-            )} exact/>
-
+            <Route path="/" component={Home} exact/>
             <Route path="/quiz" component={Quiz} exact/>
-
-            <Route path="/result" render={() => <Result/>} exact/>
+            <Route path="/result" component={Result} exact/>
         </Switch>
     </div>
 );

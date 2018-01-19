@@ -3,7 +3,7 @@ import QuizItemOptions from "./QuizItemOptions";
 
 const QuizItem = ({info, onHandleAnswer}) => {
     return (
-        <li>
+        <li className="quiz-list-item well">
             <p dangerouslySetInnerHTML={{__html: info.question}}/>
             <QuizItemOptions {...info} onHandleAnswer={onHandleAnswer} />
         </li>
