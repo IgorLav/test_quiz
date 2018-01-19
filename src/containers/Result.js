@@ -14,7 +14,7 @@ class Result extends React.Component {
         const time = this.props.time;
         return (
             <div>
-                <h1>Squiz info:</h1>
+                <h1>Quiz info:</h1>
                 <p>Result: <strong>{result}</strong></p>
                 <p>Your time: {time} s</p>
                 <Link to="/quiz">{ result ? 'Play again': 'Start quiz now'}</Link>
