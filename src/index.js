@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
-import {BrowserRouter} from 'react-router-dom';
+import {HashRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {createStore, compose, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
@@ -20,9 +20,9 @@ const store = createStore(reducer, composeEnhancers(
 
 const app = (
     <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
             <App/>
-        </BrowserRouter>
+        </HashRouter>
     </Provider>
 );
 
